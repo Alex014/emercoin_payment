@@ -124,11 +124,18 @@ class jsonRPCClient {
 		
 		// performs the HTTP POST
 		$ch = curl_init($this->url);
+    var_dump($this->url);
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-		$response = json_decode(curl_exec($ch),true);
+    $response = curl_exec($ch);
+    
+    if($responce === false) {
+      throw new Exception("Can't connect to: ".$this->url);
+    }
+    
+		$response = json_decode($response,true);
 		//var_dump($response);
 		curl_close($ch);
 		// debug output
