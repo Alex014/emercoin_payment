@@ -7,5 +7,3 @@ require(dirname(__FILE__).'/classes/emercoin.php');
 require(dirname(__FILE__).'/classes/emercoin.conf.php');
 
 if(emercoin::confirmPayment()) echo '1'; else echo '0';
-
-//echo 'error';
