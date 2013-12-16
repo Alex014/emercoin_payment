@@ -7,10 +7,12 @@ require(dirname(__FILE__).'/classes/emercoin.php');
 require(dirname(__FILE__).'/classes/emercoin.conf.php');
 header("encoding: utf8;");
 
-$address = emercoin::createPaymentAddress();
-
+//emercoin::$debug = true;
 //$info = emercoin::getinfo();
 //var_dump($info);
+
+$address = emercoin::createPaymentAddress();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +35,7 @@ $address = emercoin::createPaymentAddress();
   <div style="margin-top: 200px;" id="loading">
     <img src="/i/ajax-loader.gif" width="100" height="100"/>
   </div>
-  <div style="margin-top: 200px;" id="done" style="display: none;">
+  <div style="margin-top: 200px; display: none;" id="done">
     <h3>Payment done</h3>
     <img src="/i/done.png" width="100" height="100"/>
   </div>
