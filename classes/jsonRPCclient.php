@@ -115,6 +115,7 @@ class jsonRPCClient {
 		
 		// prepares the request
 		$request = array(
+            'jsonrpc' => '1.0',
 						'method' => $method,
 						'params' => $params,
 						'id' => $currentId
@@ -123,20 +124,20 @@ class jsonRPCClient {
 		$this->debug && $this->debug.='***** Request *****'."\n".$request."\n".'***** End Of request *****'."\n\n";
 		
 		// performs the HTTP POST
-		$ch = curl_init($this->url);
-    var_dump($this->url);
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('content-type: application/json;'));
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-    $response = curl_exec($ch);
-    
-    if($responce === false) {
-      throw new Exception("Can't connect to: ".$this->url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+    $responce = curl_exec($ch);
+
+    if(!is_string($responce)) {
+      throw new Exception("Can't connect to: ".$this->url.' '.curl_error ( $ch ));
     }
     
-		$response = json_decode($response,true);
-		//var_dump($response);
+		$responce = json_decode($responce,true);
+		//var_dump($responce);
 		curl_close($ch);
 		// debug output
 		if ($this->debug) {
@@ -146,14 +147,14 @@ class jsonRPCClient {
 		// final checks and return
 		if (!$this->notification) {
 			// check
-			if ($response['id'] != $currentId) {
-				throw new Exception('Incorrect response id (request id: '.$currentId.', response id: '.$response['id'].')');
+			if ($responce['id'] != $currentId) {
+				throw new Exception('Incorrect response id (request id: '.$currentId.', response id: '.$responce['id'].')');
 			}
-			if (!is_null($response['error'])) {
-				throw new Exception('Request error: '.$response['error']);
+			if (!is_null($responce['error'])) {
+				throw new Exception('Request error: '.$responce['error']);
 			}
 			
-			return $response['result'];
+			return $responce['result'];
 			
 		} else {
 			return true;

@@ -13,7 +13,7 @@ class emercoin {
   public static $username = '';
   public static $password = '';
   public static $address = 'localhost';
-  public static $port = '6663';
+  public static $port = '8332';
   public static $account_prefix = 'emc_terminal_';
   /**
    * The function, which returns current order ID which is usualy stored in session
@@ -53,7 +53,7 @@ class emercoin {
     if(!is_callable(self::$get_order_id)) {
       throw new Exception('Property self::$get_order_id must be callable');
     }
-    $account = self::$account_prefix.'_'.self::$get_order_id();
+    $account = self::$account_prefix.'_'.call_user_func(self::$get_order_id);
     return self::$rpcClient->getaccountaddress($account);
   }
   
@@ -75,12 +75,12 @@ class emercoin {
     if(!is_callable(self::$get_order_id)) {
       throw new Exception('Property self::$get_order_id must be callable');
     }
-    $account = self::$account_prefix.'_'.self::$get_order_id();
+    $account = self::$account_prefix.'_'.call_user_func(self::$get_order_id);
     
     if(!is_callable(self::$get_order_ammount)) {
       throw new Exception('Property self::$get_order_ammount must be callable');
     }
-    $order_ammount = self::$get_order_ammount();
+    $order_ammount = call_user_func(self::$get_order_ammount);
     
     
 		try {
