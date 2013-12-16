@@ -2,6 +2,7 @@
 require 'jsonRPCclient.php';
 /**
  * EMERCOIN (EMC) payment gateway
+ * by Neo
  */
 
 /**

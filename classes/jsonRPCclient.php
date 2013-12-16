@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * http://json-rpc.org/wiki/specification
  *
  * @author sergio <jsonrpcphp@inservibile.org>
+ * modified by Neo
  */
 class jsonRPCClient {
 	
