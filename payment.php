@@ -50,7 +50,7 @@ setInterval(function() {
       $('#loading').hide()
       $('#done').show()
       clearInterval(check_confirm_interval);
-      setTimeout(function() { window.location = '/index.php' }, 10000)
+      setTimeout(function() { window.location = 'index.php' }, 10000)
     }
   })
 }, 2000);
