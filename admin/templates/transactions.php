@@ -35,7 +35,7 @@
           <?endforeach;?>
         </tbody>
       </table>
-      <?if($count <= 20):?>
+      <?if($count > 20):?>
       <center>
         <ul class="pagination">
           <li>
