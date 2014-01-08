@@ -1,6 +1,6 @@
 <? require 'header.php';?>
   
-    <div class="container" style="width: 800px;">
+    <div class="container" style="width: 1000px;">
       <table class="table">
         <tbody>
           <tr>
@@ -12,6 +12,9 @@
             </th>
             <th>
               Ammount
+            </th>
+            <th>
+              Comment
             </th>
           </tr>
           <?foreach($ransactions as $transaction):?>
@@ -25,6 +28,9 @@
             <td>
               <?=$transaction['ammount']?>
             </td>
+            <td>
+              <?=$transaction['comment']?>
+            </td>
           </tr>
           <?endforeach;?>
         </tbody>
@@ -32,15 +38,15 @@
       <center>
         <ul class="pagination">
           <li>
-            <a href="/admin/transactions.php?page=<?=$page_prev?>">Prev</a>
+            <a href="transactions.php?page=<?=$page_prev?>">Prev</a>
           </li>
           <?for($i=1; $i <= $max_pages; $i++):?>
           <li <?if($page==$i):?> class="active"<?endif;?>>
-            <a href="/admin/transactions.php?page=<?=$i?>"><?=$i?></a>
+            <a href="transactions.php?page=<?=$i?>"><?=$i?></a>
           </li>
           <?endfor;?>
           <li>
-            <a href="/admin/transactions.php?page=<?=$page_next?>">Next</a>
+            <a href="transactions.php?page=<?=$page_next?>">Next</a>
           </li>
         </ul>
       </center>

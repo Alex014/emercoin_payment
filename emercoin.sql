@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 15 2013 г., 08:18
+-- Время создания: Янв 08 2014 г., 21:36
 -- Версия сервера: 5.5.33a-MariaDB
--- Версия PHP: 5.5.6
+-- Версия PHP: 5.5.7
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -33,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` double(12,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,40 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `payback_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `payback_admin` (
+  `password` varchar(40) NOT NULL,
+  `address` varchar(34) NOT NULL,
+  `ammount` double(16,6) NOT NULL DEFAULT '10.000000'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `payback_admin`
+--
+
+INSERT INTO `payback_admin` (`password`, `address`, `ammount`) VALUES
+('21232f297a57a5a743894a0e4a801fc3', 'EQLYz6CUoqwLuyc8EyPTom7jnSGNomKXbu', 10.000000);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payback_transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `payback_transactions` (
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ammount` double(16,6) NOT NULL DEFAULT '0.000000',
+  `address` varchar(34) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  PRIMARY KEY (`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `products`
 --
 
@@ -62,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` double(12,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
 
 -- --------------------------------------------------------
 
@@ -80,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `session` (
   UNIQUE KEY `skey_2` (`skey`),
   KEY `user_ip` (`user_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-SET FOREIGN_KEY_CHECKS=1;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
