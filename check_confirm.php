@@ -8,7 +8,7 @@ require(dirname(__FILE__).'/classes/emercoin.conf.php');
 
 if(emercoin::confirmPayment()) {
   $st = $connection->prepare('INSERT INTO payback_transactions (ammount, address, comment) VALUES (?, ?, ?)');
-  $st->execute(array($__ammount, $address, "Order # ".emercoin::$get_order_id));
+  $st->execute(array($__ammount, $address, "Order # ".call_user_func(emercoin::$get_order_id)));
   echo '1'; 
 }
 else {
