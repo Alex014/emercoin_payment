@@ -14,3 +14,4 @@ if(emercoin::confirmPayment()) {
 else {
   echo '0';
 }
+
