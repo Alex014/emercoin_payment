@@ -12,7 +12,7 @@ header("encoding: utf8;");
 //var_dump($info);
 
 $address = emercoin::createPaymentAddress();
-
+$_SESSION['order_address'] = $address;
 ?>
 <!DOCTYPE html>
 <html lang="en">
