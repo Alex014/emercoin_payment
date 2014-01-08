@@ -35,6 +35,7 @@
           <?endforeach;?>
         </tbody>
       </table>
+      <?if($count <= 20):?>
       <center>
         <ul class="pagination">
           <li>
@@ -50,6 +51,7 @@
           </li>
         </ul>
       </center>
+      <?endif;?>
     </div>
     
 <? require 'footer.php';?>
