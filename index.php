@@ -24,35 +24,35 @@ if($st) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <center>
   <h1>Shopping CART</h1>
   
   <form method="post">
-  <table style="margin-top: 50px;">
-    <tr>
-      <th></th>
-      <th align="center" colspan="2">Product</th>
-      <th align="center">Price</th>
-      <th align="center">Ammount</th>
-    </tr>
-    <?foreach($products as $product):?>
-    <tr>
-      <td> 
-        <input name="products[<?=$product['id']?>][id]" type="checkbox"/> 
-        <input name="products[<?=$product['id']?>][price]" value="<?=$product['price']?>" type="hidden"/>
-      </td>
-      <td> <img src="/i/prod_<?=$product['id']?>.jpg" width="200"/> </td>
-      <td> <?=$product['name']?> </td>
-      <td style="padding-left: 100px;"> <?=$product['price']?> (EMC) </td>
-      <td> <input name="products[<?=$product['id']?>][ammount]" value="1" type="text" style="width: 50px"/> </td>
-    </tr>
-    <?endforeach;?>
-  </table>
+    <table style="margin-top: 50px;">
+      <tr>
+        <th></th>
+        <th align="center" colspan="2">Product</th>
+        <th align="center">Price</th>
+        <th align="center">Ammount</th>
+      </tr>
+      <?foreach($products as $product):?>
+      <tr>
+        <td> 
+          <input name="products[<?=$product['id']?>][id]" type="checkbox"/> 
+          <input name="products[<?=$product['id']?>][price]" value="<?=$product['price']?>" type="hidden"/>
+        </td>
+        <td> <img src="i/prod_<?=$product['id']?>.jpg" width="200"/> </td>
+        <td> <?=$product['name']?> </td>
+        <td style="padding-left: 100px;"> <?=$product['price']?> (EMC) </td>
+        <td> <input name="products[<?=$product['id']?>][ammount]" value="1" type="text" style="width: 50px"/> </td>
+      </tr>
+      <?endforeach;?>
+    </table>
     
     <input type="submit" value="BUY" class="btn btn-primary"/>
   </form>
@@ -87,7 +87,7 @@ if(count($_POST) > 0) {
       $connection->exec("INSERT INTO orders_products (order_id, product_id, ammount) VALUES ($order_id, $product_id, $ammount)");
     }
     //Redirecting to payment gateway
-    header('location: /payment.php');
+    header('location: payment.php');
   }
   
 }

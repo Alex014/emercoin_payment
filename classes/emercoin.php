@@ -96,4 +96,63 @@ class emercoin {
 			return false;
 		}
   }
+  
+  /**
+   * Return the balance from account
+   * @param type $account
+   * @return float
+   */
+  public static function getAccauntBalance($account) {
+    $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
+    self::$rpcClient = new jsonRPCClient($url, self::$debug);
+    
+    self::$emercoin_info = self::$rpcClient->getinfo();
+    
+    return self::$rpcClient->getbalance($account);
+  }
+  
+  /**
+   * Return total from the wallet
+   * @return float
+   */
+  public static function getAllBalance() {
+    $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
+    self::$rpcClient = new jsonRPCClient($url, self::$debug);
+    
+    self::$emercoin_info = self::$rpcClient->getinfo();
+    
+    return self::$rpcClient->getbalance();
+  }
+  
+  /**
+   * Send some EMC to address
+   * 
+   * @param type $emercoinaddress
+   * @param type $amount
+   * @return type
+   */
+  public static function sendToAddress($emercoinaddress, $amount) {
+    $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
+    self::$rpcClient = new jsonRPCClient($url, self::$debug);
+    
+    self::$emercoin_info = self::$rpcClient->getinfo();
+    
+    return self::$rpcClient->sendtoaddress($emercoinaddress, (double)$amount);
+  }
+  
+  /**
+   * Send ALL your EMC to address
+   * @param type $emercoinaddress
+   * @return type
+   */
+  public static function sendAllToAddress($emercoinaddress) {
+    $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
+    self::$rpcClient = new jsonRPCClient($url, self::$debug);
+    
+    self::$emercoin_info = self::$rpcClient->getinfo();
+    
+    $amount = self::getAllBalance();
+    
+    return self::$rpcClient->sendtoaddress($emercoinaddress, (double)$amount);
+  }
 }

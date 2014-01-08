@@ -22,29 +22,29 @@ $address = emercoin::createPaymentAddress();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <center>
   <h3>Your payment address:</h3>
-  <h1><?=$address?></h1>
+  <h1> <a href="emercoin:<?=$address?>?amount=<?=$_SESSION['order_ammount']?>"> <?=$address?> </a> </h1>
   <h2>Payment ammount: <?=$_SESSION['order_ammount']?> (EMC)</h2>
   
   <div style="margin-top: 200px;" id="loading">
-    <img src="/i/ajax-loader.gif" width="100" height="100"/>
+    <img src="i/ajax-loader.gif" width="100" height="100"/>
   </div>
   <div style="margin-top: 200px; display: none;" id="done">
     <h3>Payment done</h3>
-    <img src="/i/done.png" width="100" height="100"/>
+    <img src="i/done.png" width="100" height="100"/>
   </div>
 </center>
 
 <script type="text/javascript">
 check_confirm_interval =
 setInterval(function() {
-  $.get('/check_confirm.php', function(res) {
+  $.get('check_confirm.php', function(res) {
     console.log(res)
     if(res.trim() == '1') {
       $('#loading').hide()
