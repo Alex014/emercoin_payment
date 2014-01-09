@@ -15,5 +15,5 @@ This is an example of a payment gateway, which uses Emercoin (http://emercoin.co
   Admin part in "admin" path contains an admin panel, where you can view transactions and take some coins out.
 
 ##Uses
-jQuery http://jquery.com/
-Bootstrap from twitter http://getbootstrap.com/
+  * jQuery http://jquery.com/
+  * Bootstrap from twitter http://getbootstrap.com/
