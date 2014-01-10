@@ -12,7 +12,8 @@ This is an example of a payment gateway, which uses Emercoin (http://emercoin.co
   * emercoin.conf.php - config file
 
 ##Additions
-  Admin part in "admin" path contains an admin panel, where you can view transactions and take some coins out.
+  * Admin part in "admin" path contains an admin panel, where you can view transactions and take some coins out.
+  * Run payout.php with **cron** for automatic pay-out
 
 ##Uses
   * jQuery http://jquery.com/
