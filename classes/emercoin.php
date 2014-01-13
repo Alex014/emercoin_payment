@@ -41,6 +41,21 @@ class emercoin {
   }
   
   /**
+   * Create account or return an existing account address
+   * @param string $account
+   * @return address
+   * @throws Exception
+   */
+  public static function getAccountAddress($account) {
+    $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
+    self::$rpcClient = new jsonRPCClient($url, self::$debug);
+    
+    self::$emercoin_info = self::$rpcClient->getinfo();
+    
+    return self::$rpcClient->getaccountaddress($account);
+  }
+  
+  /**
    * Function creates new account and returns it's address to recieve payments
    * The account name is saved as "self::$account_prefix+_+self::$get_order_id()"
    * @return account Payment address
