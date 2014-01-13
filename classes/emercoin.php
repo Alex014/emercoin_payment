@@ -144,15 +144,21 @@ class emercoin {
    * 
    * @param type $emercoinaddress
    * @param type $amount
+   * @param type $account
    * @return type
    */
-  public static function sendToAddress($emercoinaddress, $amount) {
+  public static function sendToAddress($emercoinaddress, $amount, $account = '') {
     $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
     self::$rpcClient = new jsonRPCClient($url, self::$debug);
     
     self::$emercoin_info = self::$rpcClient->getinfo();
     
-    return self::$rpcClient->sendtoaddress($emercoinaddress, (double)$amount);
+    if($account == '') {
+      return self::$rpcClient->sendtoaddress($emercoinaddress, (double)$amount);
+    }
+    else {
+      return self::$rpcClient->sendfrom($account, $emercoinaddress, (double)$amount);
+    }
   }
   
   /**
