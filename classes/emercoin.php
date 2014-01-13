@@ -144,7 +144,7 @@ class emercoin {
    * 
    * @param type $emercoinaddress
    * @param type $amount
-   * @param type $account
+   * @param type $account - send account from
    * @return type
    */
   public static function sendToAddress($emercoinaddress, $amount, $account = '') {
