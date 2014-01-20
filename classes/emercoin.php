@@ -145,7 +145,7 @@ class emercoin {
    * @param type $emercoinaddress
    * @param type $amount
    * @param type $account - send account from
-   * @return type
+   * @return type 
    */
   public static function sendToAddress($emercoinaddress, $amount, $account = '') {
     $url = self::$username.':'.self::$password.'@'.self::$address.':'.self::$port.'/';
