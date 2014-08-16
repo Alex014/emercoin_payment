@@ -104,7 +104,12 @@ class emercoin {
 		} catch (Exception $e) {
 			echo false;
 		}
-		if((float)$received_amount >= (float)$order_ammount) {
+    
+		//if((float)$received_amount >= (float)$order_ammount) {
+      
+    //Comparing two floats with epsilon (http://php.net/manual/en/language.types.float.php)
+    $epsilon = 0.0000001; // 1 Satoshi
+    if((float)$order_ammount - (float)$received_amount < $epsilon) {
 			return true;
 		}
 		else {
